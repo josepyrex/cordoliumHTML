@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon AI - Live Interface</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/live-interface.css">
+</head>
+<body class="live-interface-body">
+
+    <!-- Live AI Interface -->
+    <div class="live-interface-container">
+        <!-- Top Bar -->
+        <div class="interface-header">
+            <div class="logo-small">
+                <img src="assets/images/logo.png" alt="Cordolium" class="logo-icon-small">
+                <span>CORDOLIUM</span>
+            </div>
+            <div class="connection-status" id="connectionStatus">
+                <span class="status-dot"></span>
+                <span class="status-text">Connecting...</span>
+            </div>
+        </div>
+
+        <!-- Main Visualization Area -->
+        <div class="visualization-container">
+            <canvas id="waveformCanvas" class="waveform-canvas"></canvas>
+
+            <!-- State Overlay -->
+            <div class="state-overlay" id="stateOverlay">
+                <div class="state-text" id="stateText">Initializing...</div>
+            </div>
+        </div>
+
+        <!-- Response Display Area - REMOVED (Visual only) -->
+
+        <!-- Control Hints (fade out after a few seconds) -->
+        <div class="control-hints" id="controlHints">
+            <p><strong>Tap circle</strong> or press <strong>Space</strong> to trigger response | <strong>D</strong> for controls</p>
+        </div>
+
+        <!-- Mobile Floating Control Button -->
+        <button class="mobile-control-btn" id="mobileControlBtn" onclick="if(window.directorPanel) directorPanel.toggle()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v6m0 6v6m-6-6h6m6 0h6"/>
+            </svg>
+        </button>
+
+        <!-- Mobile Quick Actions -->
+        <div class="mobile-quick-actions" id="mobileQuickActions">
+            <button class="quick-action-btn" onclick="if(window.liveAI) liveAI.handleManualTrigger()" title="Trigger Response">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </button>
+            <button class="quick-action-btn" onclick="if(window.liveAI) liveAI.setState('idle')" title="Reset to Idle">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Permission Modal -->
+    <div id="permissionModal" class="modal active">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-icon">🎤</div>
+            <h3>Allow Cordolium to Access Microphone?</h3>
+            <p>To enable voice conversations with your AI companion, we need access to your microphone. Your privacy is our priority—recordings are processed in real-time and never stored.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-secondary" id="denyMicBtn">Not Now</button>
+                <button class="modal-btn modal-btn-primary" id="allowMicBtn">Allow</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="audio/audio-processor.js"></script>
+    <script src="audio/response-manager.js"></script>
+    <script src="visualizations/waveform-viz.js"></script>
+    <script src="controls/director-panel.js"></script>
+    <script src="js/live-interface.js"></script>
+</body>
+</html>

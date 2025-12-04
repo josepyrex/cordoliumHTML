@@ -1,0 +1,511 @@
+/**
+ * Cordolium Live Interface Styles
+ * For filming AI voice interaction scenes
+ */
+
+.live-interface-body {
+    background: linear-gradient(180deg, #000000 0%, #1a1a1a 100%);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    transition: background 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.live-interface-body.speaking {
+    background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+}
+
+/* Smooth transitions for all elements */
+.interface-header {
+    transition: all 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.logo-small,
+.connection-status {
+    transition: color 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.logo-icon-small {
+    transition: filter 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.live-interface-body.speaking .interface-header {
+    background: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.live-interface-body.speaking .logo-small,
+.live-interface-body.speaking .connection-status {
+    color: #000;
+}
+
+.live-interface-body.speaking .logo-icon-small {
+    filter: brightness(1) invert(0);
+}
+
+.live-interface-body.speaking .state-text {
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 32px;
+    transform: scale(1.1);
+}
+
+.live-interface-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--white);
+}
+
+/* Header */
+.interface-header {
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-small {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--white);
+}
+
+.logo-icon-small {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fbbf24;
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+.status-dot.connected {
+    background: #10b981;
+}
+
+.status-dot.disconnected {
+    background: #ef4444;
+    animation: none;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+/* Visualization Container */
+.visualization-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 70%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.visualization-container:hover {
+    background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);
+}
+
+.visualization-container:active {
+    transform: scale(0.98);
+}
+
+.waveform-canvas {
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+    max-height: 600px;
+    transition: all 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* State Overlay */
+.state-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.8s ease; /* Smoother fade */
+}
+
+.state-overlay.visible {
+    opacity: 1;
+}
+
+.state-text {
+    font-size: 24px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    animation: statePulse 2s ease-in-out infinite;
+    transition: all 4s cubic-bezier(0.22, 0.61, 0.36, 1); /* Smoother ease-out */
+}
+
+@keyframes statePulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Speaking state text - MORE PRONOUNCED */
+.live-interface-body.speaking .state-text {
+    color: rgba(0, 0, 0, 0.9);
+    animation: speakingPulse 1s ease-in-out infinite;
+    font-size: 32px;
+}
+
+@keyframes speakingPulse {
+    0%, 100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+/* Make waveform more visible during speaking */
+.live-interface-body.speaking .waveform-canvas {
+    opacity: 1; /* Fully visible */
+    transform: scale(1.05); /* Slightly larger when speaking */
+    transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Response Container - REMOVED (Visual only interface) */
+
+/* Control Hints */
+.control-hints {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.control-hints.hidden {
+    opacity: 0;
+}
+
+.control-hints strong {
+    color: var(--white);
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* Director Panel */
+.director-panel {
+    position: fixed;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 0;
+    width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+    z-index: 3000;
+    transition: all 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.director-panel.hidden {
+    right: -450px;
+    opacity: 0;
+}
+
+.director-panel-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1;
+}
+
+.director-panel-header h3 {
+    margin: 0;
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 32px;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.director-panel-content {
+    padding: 20px;
+}
+
+.control-section {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.control-section:last-child {
+    border-bottom: none;
+}
+
+.control-section h4 {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.control-section button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 4px;
+    font-weight: 500;
+}
+
+.control-section button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.quick-responses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.control-section label {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.control-section input[type="range"] {
+    width: 100%;
+    margin: 8px 0;
+}
+
+.control-section input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.shortcuts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.shortcuts-list li {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    padding: 6px 0;
+}
+
+.shortcuts-list strong {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
+    font-weight: 600;
+}
+
+/* Mobile Controls */
+.mobile-control-btn {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 999;
+    transition: all 0.3s ease;
+}
+
+.mobile-control-btn:active {
+    transform: scale(0.95);
+}
+
+.live-interface-body.speaking .mobile-control-btn {
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+}
+
+.mobile-quick-actions {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
+}
+
+.quick-action-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.quick-action-btn:active {
+    transform: scale(0.9);
+}
+
+.live-interface-body.speaking .quick-action-btn {
+    background: rgba(255, 255, 255, 0.8);
+    color: #000;
+}
+
+/* Responsive - MOBILE OPTIMIZED */
+@media (max-width: 768px) {
+    .interface-header {
+        padding: 16px 20px;
+    }
+
+    .live-interface-container {
+        height: 100vh;
+        height: 100dvh; /* Dynamic viewport height */
+    }
+
+    /* Show mobile controls */
+    .mobile-control-btn,
+    .mobile-quick-actions {
+        display: flex;
+    }
+
+    /* Hide desktop keyboard hints on mobile */
+    .control-hints {
+        display: none;
+    }
+
+    .director-panel {
+        width: 95%;
+        max-width: 450px;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%);
+        max-height: 80vh;
+    }
+
+    .director-panel.hidden {
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Larger tap targets */
+    .control-section button {
+        min-height: 44px;
+        font-size: 14px;
+    }
+
+    /* Better spacing for mobile */
+    .state-text {
+        font-size: 20px;
+    }
+
+    .live-interface-body.speaking .state-text {
+        font-size: 28px;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 375px) {
+    .mobile-control-btn {
+        width: 48px;
+        height: 48px;
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .mobile-quick-actions {
+        bottom: 16px;
+        left: 16px;
+    }
+
+    .quick-action-btn {
+        width: 44px;
+        height: 44px;
+    }
+}

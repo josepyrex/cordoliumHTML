@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Simon AI - Chat</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/text-interface.css">
+</head>
+<body class="text-interface-body">
+
+    <!-- Mobile Chat Interface -->
+    <div class="mobile-container">
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <button class="back-btn" onclick="history.back()">‹</button>
+            <div class="chat-title">
+                <div class="avatar">S</div>
+                <div class="title-info">
+                    <div class="name">Simon AI</div>
+                    <div class="status">Active now</div>
+                </div>
+            </div>
+            <button class="options-btn">⋮</button>
+        </div>
+
+        <!-- Chat Messages -->
+        <div class="chat-messages" id="chatMessages">
+            <!-- Initial call disconnected message -->
+            <div class="message-system">
+                <span class="system-icon">📞</span>
+                <span class="system-text">Call ended</span>
+            </div>
+
+            <!-- Messages will be added here dynamically -->
+        </div>
+
+        <!-- Typing Indicator (hidden by default) -->
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="avatar-small">S</div>
+            <div class="typing-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-container">
+            <button class="attach-btn">+</button>
+            <div class="input-wrapper">
+                <input type="text"
+                       class="chat-input"
+                       id="chatInput"
+                       placeholder="Message Simon..."
+                       autocomplete="off">
+            </div>
+            <button class="send-btn" id="sendBtn" disabled>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 10l16-8-8 16-2-8-6-0z"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Hidden Control Hints -->
+        <div class="control-hints-text" id="controlHints">
+            Press <strong>ENTER</strong> to trigger response | <strong>1-9</strong> for quick responses | <strong>ESC</strong> for controls
+        </div>
+    </div>
+
+    <!-- Operator Panel (Hidden) -->
+    <div class="text-operator-panel" id="operatorPanel">
+        <div class="panel-header">
+            <h3>Operator Controls</h3>
+            <button class="close-btn" onclick="toggleOperatorPanel()">×</button>
+        </div>
+        <div class="panel-content">
+            <div class="control-group">
+                <h4>Response Control</h4>
+                <button onclick="triggerNextResponse()">Next Response (Enter)</button>
+                <button onclick="showTypingIndicator()">Show Typing (T)</button>
+                <button onclick="clearChat()">Clear Chat (C)</button>
+                <button onclick="resetSequence()">Reset Sequence (R)</button>
+            </div>
+
+            <div class="control-group">
+                <h4>Quick Responses (1-9)</h4>
+                <button onclick="quickResponse(1)">1: Call Disconnected</button>
+                <button onclick="quickResponse(2)">2: Coffee Locations</button>
+                <button onclick="quickResponse(3)">3: Understanding</button>
+                <button onclick="quickResponse(4)">4: Assistance</button>
+            </div>
+
+            <div class="control-group">
+                <h4>Settings</h4>
+                <label>
+                    Typing Speed (ms):
+                    <input type="range" min="20" max="100" value="50" id="typingSpeed">
+                    <span id="typingSpeedValue">50</span>
+                </label>
+                <label>
+                    <input type="checkbox" id="autoScroll" checked>
+                    Auto-scroll to bottom
+                </label>
+            </div>
+
+            <div class="control-group">
+                <h4>Sequence</h4>
+                <select id="sequenceSelect" onchange="loadSequence(this.value)">
+                    <option value="text_conversation">Text Conversation</option>
+                    <option value="demo_sequence">Demo Sequence</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="audio/response-manager.js"></script>
+    <script src="js/text-interface.js"></script>
+</body>
+</html>

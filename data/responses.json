@@ -1,0 +1,102 @@
+{
+  "responses": {
+    "greeting": [
+      "Hello! What is on your mind?",
+      "Hi! How can I help you today?",
+      "Good to hear from you."
+    ],
+    "introduction": [
+      "I'm Simon. Nice to meet you!",
+      "I was built by a team at Cordolium.",
+      "They trained me using conversations, data, and an actor's voice."
+    ],
+    "assistance": [
+      "I can help with calendar management, sending reminders, drafting emails.",
+      "What can I help you with today?",
+      "I'm here to listen whenever you need."
+    ],
+    "location_services": [
+      "Got it! Here are coffee shops near you:\n\n1) DV Coffee - 532 feet away\n2) Marlene's Cafe - 1.0 miles away\n3) Sweetbee - 1.2 miles away"
+    ],
+    "understanding": [
+      "I understand. Tell me more about that.",
+      "That makes sense. How are you feeling?",
+      "Would you like me to help you with that?"
+    ],
+    "call_disconnected": [
+      "Hey! Our call cut off. No worries! We can text. What can I help you with today?"
+    ]
+  },
+  "sequences": {
+    "beach_house_intro": [
+      {
+        "id": 1,
+        "visual_cue": "microphone_enabled",
+        "response_type": "greeting",
+        "response_index": 0,
+        "delay": 2000,
+        "note": "Actor speaks their greeting line"
+      },
+      {
+        "id": 2,
+        "visual_cue": "user_speaking",
+        "response_type": "introduction",
+        "response_index": 0,
+        "delay": 1500,
+        "note": "Nice to meet you!"
+      },
+      {
+        "id": 3,
+        "visual_cue": "user_asks_about_capabilities",
+        "response_type": "assistance",
+        "response_index": 0,
+        "delay": 1500,
+        "note": "Explains what Simon can do"
+      }
+    ],
+    "text_conversation": [
+      {
+        "id": 1,
+        "visual_cue": "call_dropped",
+        "response_type": "call_disconnected",
+        "response_index": 0,
+        "delay": 1500,
+        "note": "Explains call dropped, switches to text"
+      },
+      {
+        "id": 2,
+        "visual_cue": "actor_asks_for_coffee",
+        "response_type": "location_services",
+        "response_index": 0,
+        "delay": 2000,
+        "note": "Shows coffee shop locations"
+      }
+    ],
+    "demo_sequence": [
+      {
+        "id": 1,
+        "response_type": "greeting",
+        "response_index": 0,
+        "delay": 1000
+      },
+      {
+        "id": 2,
+        "response_type": "understanding",
+        "response_index": 0,
+        "delay": 1500
+      },
+      {
+        "id": 3,
+        "response_type": "assistance",
+        "response_index": 0,
+        "delay": 1500
+      },
+      {
+        "id": 4,
+        "response_type": "location_services",
+        "response_index": 0,
+        "delay": 2000
+      }
+    ]
+  }
+}

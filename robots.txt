@@ -1,0 +1,22 @@
+# robots.txt for Cordolium
+# https://cordolium.com/robots.txt
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /live-interface.html
+Allow: /text-interface.html
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+
+# Disallow private or admin areas (if any)
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /.claude/
+
+# Sitemap location
+Sitemap: https://cordolium.com/sitemap.xml
+
+# Crawl-delay (optional, helps prevent server overload)
+Crawl-delay: 1

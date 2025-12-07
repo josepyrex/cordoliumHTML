@@ -436,6 +436,8 @@
 @media (max-width: 768px) {
     .text-interface-body {
         padding: 0;
+        min-height: 100vh;
+        min-height: 100dvh;
     }
 
     .mobile-container {
@@ -443,11 +445,42 @@
         height: 100vh;
         height: 100dvh; /* Dynamic viewport height for mobile browsers */
         border-radius: 0;
+        box-shadow: none;
+    }
+
+    /* Better touch handling for iOS */
+    .chat-messages {
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+        overscroll-behavior: contain;
     }
 
     .chat-input-container {
-        padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-        /* Adjust for iPhone bottom notch */
+        padding: 12px 16px;
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+
+    /* Improve input behavior on iOS */
+    .chat-input {
+        font-size: 16px; /* Prevents iOS zoom on focus */
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    /* Better button touch targets */
+    .back-btn,
+    .options-btn,
+    .attach-btn,
+    .send-btn {
+        min-width: 44px;
+        min-height: 44px;
+        -webkit-tap-highlight-color: rgba(0, 122, 255, 0.2);
+        touch-action: manipulation;
+    }
+
+    .send-btn {
+        width: 40px;
+        height: 40px;
     }
 
     .text-operator-panel {
@@ -457,6 +490,7 @@
         right: auto;
         transform: translate(-50%, -50%);
         max-height: 70vh;
+        max-height: 70dvh;
     }
 
     .text-operator-panel.hidden {
@@ -470,6 +504,8 @@
         padding: 14px 16px;
         font-size: 14px;
         min-height: 44px; /* iOS recommended touch target */
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+        touch-action: manipulation;
     }
 
     /* Hide control hints on mobile after short delay */
@@ -477,6 +513,12 @@
         font-size: 10px;
         padding: 6px 12px;
         bottom: 90px;
+        bottom: calc(90px + env(safe-area-inset-bottom));
+    }
+
+    /* Safe area for iPhone notch/island */
+    .chat-header {
+        padding-top: max(16px, env(safe-area-inset-top));
     }
 }
 
@@ -485,10 +527,22 @@
     .message-bubble {
         max-width: 80%;
         font-size: 15px;
+        padding: 10px 14px;
     }
 
     .chat-header {
         padding: 12px;
+        padding-top: max(12px, env(safe-area-inset-top));
+    }
+
+    .chat-input {
+        font-size: 16px;
+        padding: 9px 14px;
+    }
+
+    .chat-input-container {
+        padding: 10px 12px;
+        padding-bottom: max(10px, env(safe-area-inset-bottom));
     }
 }
 
@@ -496,9 +550,45 @@
 @media (max-height: 500px) and (orientation: landscape) {
     .mobile-container {
         height: 100vh;
+        height: 100dvh;
     }
 
     .chat-messages {
         padding: 12px;
+    }
+
+    .chat-header {
+        padding: 8px 12px;
+    }
+
+    .chat-input-container {
+        padding: 8px 12px;
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Fix iOS keyboard issues */
+@supports (-webkit-touch-callout: none) {
+    /* iOS-specific fixes */
+    .chat-input {
+        -webkit-user-select: text;
+        user-select: text;
+    }
+
+    .mobile-container {
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Prevent bounce scrolling on body */
+    .text-interface-body {
+        position: fixed;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .chat-messages {
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
     }
 }

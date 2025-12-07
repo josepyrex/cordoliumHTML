@@ -450,6 +450,24 @@
     .live-interface-container {
         height: 100vh;
         height: 100dvh; /* Dynamic viewport height */
+        position: relative;
+        touch-action: manipulation; /* Improve touch responsiveness */
+    }
+
+    /* Make visualization container more touch-friendly */
+    .visualization-container {
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        min-height: 300px;
+    }
+
+    .waveform-canvas {
+        pointer-events: none; /* Let touches pass through to container */
+        max-width: 90vw;
+        max-height: 50vh;
     }
 
     /* Show mobile controls */
@@ -463,6 +481,25 @@
         display: none;
     }
 
+    /* Make state overlay more visible on mobile */
+    .state-overlay {
+        z-index: 100;
+        pointer-events: none;
+    }
+
+    .state-text {
+        font-size: 20px;
+        padding: 12px 24px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+    }
+
+    .live-interface-body.speaking .state-text {
+        font-size: 28px;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
     .director-panel {
         width: 95%;
         max-width: 450px;
@@ -470,6 +507,7 @@
         right: auto;
         transform: translate(-50%, -50%);
         max-height: 80vh;
+        max-height: 80dvh;
     }
 
     .director-panel.hidden {
@@ -482,15 +520,14 @@
     .control-section button {
         min-height: 44px;
         font-size: 14px;
+        padding: 12px 20px;
     }
 
-    /* Better spacing for mobile */
-    .state-text {
-        font-size: 20px;
-    }
-
-    .live-interface-body.speaking .state-text {
-        font-size: 28px;
+    /* Better mobile button styling */
+    .mobile-control-btn,
+    .quick-action-btn {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
     }
 }
 
@@ -511,5 +548,44 @@
     .quick-action-btn {
         width: 44px;
         height: 44px;
+    }
+
+    .state-text {
+        font-size: 18px;
+    }
+
+    .live-interface-body.speaking .state-text {
+        font-size: 24px;
+    }
+}
+
+/* iPhone safe area support */
+@supports (padding: max(0px)) {
+    .live-interface-container {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .mobile-control-btn {
+        bottom: max(24px, env(safe-area-inset-bottom));
+        right: max(24px, env(safe-area-inset-right));
+    }
+
+    .mobile-quick-actions {
+        bottom: max(24px, env(safe-area-inset-bottom));
+        left: max(24px, env(safe-area-inset-left));
+    }
+
+    .interface-header {
+        padding-top: max(24px, env(safe-area-inset-top));
+        padding-left: max(48px, env(safe-area-inset-left));
+        padding-right: max(48px, env(safe-area-inset-right));
+    }
+
+    @media (max-width: 768px) {
+        .interface-header {
+            padding-left: max(20px, env(safe-area-inset-left));
+            padding-right: max(20px, env(safe-area-inset-right));
+        }
     }
 }

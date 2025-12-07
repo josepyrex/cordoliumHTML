@@ -200,11 +200,33 @@ class LiveAIInterface {
         const vizContainer = document.querySelector('.visualization-container');
         if (vizContainer) {
             vizContainer.style.cursor = 'pointer';
-            vizContainer.addEventListener('click', () => {
+
+            // Handle both click and touch events for mobile
+            const handleTrigger = (e) => {
+                e.preventDefault();
                 // Only trigger if in idle or listening state
                 if (this.state === 'idle' || this.state === 'listening') {
                     this.handleManualTrigger();
                 }
+            };
+
+            // Add both click and touch events for cross-platform compatibility
+            vizContainer.addEventListener('click', handleTrigger);
+            vizContainer.addEventListener('touchend', handleTrigger);
+
+            // Add visual feedback for touch
+            vizContainer.addEventListener('touchstart', (e) => {
+                if (this.state === 'idle' || this.state === 'listening') {
+                    vizContainer.style.opacity = '0.8';
+                }
+            });
+
+            vizContainer.addEventListener('touchend', () => {
+                vizContainer.style.opacity = '1';
+            });
+
+            vizContainer.addEventListener('touchcancel', () => {
+                vizContainer.style.opacity = '1';
             });
         }
     }

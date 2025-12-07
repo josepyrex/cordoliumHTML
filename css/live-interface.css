@@ -396,6 +396,14 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     z-index: 999;
     transition: all 0.3s ease;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.mobile-control-btn svg {
+    display: block;
+    margin: 0 auto;
 }
 
 .mobile-control-btn:active {
@@ -430,6 +438,12 @@
     justify-content: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
+    padding: 0;
+}
+
+.quick-action-btn svg {
+    display: block;
+    margin: 0 auto;
 }
 
 .quick-action-btn:active {
@@ -528,6 +542,19 @@
     .quick-action-btn {
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-control-btn {
+        width: 60px;
+        height: 60px;
+    }
+
+    .quick-action-btn {
+        width: 52px;
+        height: 52px;
     }
 }
 

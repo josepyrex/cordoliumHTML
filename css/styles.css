@@ -866,24 +866,43 @@ footer {
 
     .nav-links li {
         width: 100%;
-        padding: 12px 0;
+        padding: 0;
         border-bottom: 1px solid var(--gray-200);
     }
 
     .nav-links li:last-child {
         border-bottom: none;
+        padding-bottom: 8px;
     }
 
     .nav-links a {
         display: block;
-        padding: 8px 0;
+        padding: 16px 12px;
         font-size: 16px;
+        min-height: 52px;
+        width: 100%;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+        transition: background-color 0.2s ease;
+    }
+
+    .nav-links a:active {
+        background-color: var(--gray-100);
     }
 
     .nav-cta {
-        margin-top: 8px;
+        margin: 12px;
         display: block;
         text-align: center;
+        padding: 16px 24px !important;
+        border-radius: 8px;
+        min-height: 52px;
+        width: calc(100% - 24px);
+        box-sizing: border-box;
+    }
+
+    .nav-cta:active {
+        background: var(--gray-900) !important;
+        transform: scale(0.98);
     }
 
     .mobile-menu-toggle {

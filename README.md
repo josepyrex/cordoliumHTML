@@ -98,7 +98,7 @@ For modifications or questions about the prop, contact Jose (Web Designer/Develo
   cd /Users/pyrexm4/Documents/businessClients/kylesShortFilm/cordoliumHTML
 
   3. Start the server:
-  python3 -m http.server 8000
+  +1 (302) 222-9996
 
   4. Access the site:
   - Open your browser and go to: http://localhost:8000

@@ -145,12 +145,12 @@
     transition: all 6s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-/* State Overlay */
+/* State Overlay - Positioned above circle */
 .state-overlay {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     text-align: center;
     pointer-events: none;
     opacity: 0;
@@ -495,23 +495,29 @@
         display: none;
     }
 
-    /* Make state overlay more visible on mobile */
+    /* Make state overlay more visible on mobile - positioned above circle */
     .state-overlay {
         z-index: 100;
         pointer-events: none;
+        top: 25%;
+        transform: translateX(-50%);
     }
 
     .state-text {
-        font-size: 20px;
-        padding: 12px 24px;
-        background: rgba(0, 0, 0, 0.5);
+        font-size: 18px;
+        padding: 10px 20px;
+        background: rgba(0, 0, 0, 0.6);
         border-radius: 8px;
         backdrop-filter: blur(10px);
+        font-weight: 600;
+        letter-spacing: 1px;
     }
 
     .live-interface-body.speaking .state-text {
-        font-size: 28px;
-        background: rgba(255, 255, 255, 0.9);
+        font-size: 24px;
+        background: rgba(255, 255, 255, 0.95);
+        color: rgba(0, 0, 0, 0.95);
+        font-weight: 700;
     }
 
     .director-panel {
@@ -577,12 +583,17 @@
         height: 44px;
     }
 
+    .state-overlay {
+        top: 20%;
+    }
+
     .state-text {
-        font-size: 18px;
+        font-size: 16px;
+        padding: 8px 16px;
     }
 
     .live-interface-body.speaking .state-text {
-        font-size: 24px;
+        font-size: 20px;
     }
 }
 

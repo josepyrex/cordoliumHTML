@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect - Cordolium</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/phone-entry.css">
+</head>
+<body class="phone-entry-body">
+
+    <!-- Phone Entry Container -->
+    <div class="phone-entry-container">
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="assets/images/logo.png" alt="Cordolium" class="logo-main">
+            <h1 class="logo-text">CORDOLIUM</h1>
+        </div>
+
+        <!-- Form Card -->
+        <div class="entry-card">
+            <h2 class="entry-title">Connect with Simon</h2>
+            <p class="entry-description">Enter your phone number to begin your AI companion experience</p>
+
+            <form id="phoneForm" class="phone-form">
+                <div class="input-group">
+                    <label for="phoneNumber" class="input-label">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        class="phone-input"
+                        placeholder="(555) 123-4567"
+                        autocomplete="tel"
+                        required
+                    >
+                    <div class="input-error" id="phoneError"></div>
+                </div>
+
+                <button type="submit" class="continue-btn" id="continueBtn">
+                    <span>Continue</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+
+            <p class="privacy-note">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Your privacy is protected. We never share your information.
+            </p>
+        </div>
+
+        <!-- Skip Link (for testing/director) -->
+        <button class="skip-link" id="skipBtn">Skip to demo</button>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Connecting to Simon...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/phone-entry.js"></script>
+</body>
+</html>

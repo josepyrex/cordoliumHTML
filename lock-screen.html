@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>iPhone</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/lock-screen.css">
+</head>
+<body>
+    <!-- iPhone Lock Screen -->
+    <div class="lock-screen" id="lockScreen">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-time" id="statusTime">9:41</span>
+            </div>
+            <div class="status-right">
+                <svg class="status-icon" width="16" height="11" viewBox="0 0 16 11" fill="none">
+                    <path d="M0 4.5C0 3.67157 0.671573 3 1.5 3H3.5C4.32843 3 5 3.67157 5 4.5V6.5C5 7.32843 4.32843 8 3.5 8H1.5C0.671573 8 0 7.32843 0 6.5V4.5Z" fill="white"/>
+                    <path d="M6 3.5C6 2.67157 6.67157 2 7.5 2H9.5C10.3284 2 11 2.67157 11 3.5V7.5C11 8.32843 10.3284 9 9.5 9H7.5C6.67157 9 6 8.32843 6 7.5V3.5Z" fill="white" fill-opacity="0.6"/>
+                    <path d="M12 1.5C12 0.671573 12.6716 0 13.5 0H14.5C15.3284 0 16 0.671573 16 1.5V9.5C16 10.3284 15.3284 11 14.5 11H13.5C12.6716 11 12 10.3284 12 9.5V1.5Z" fill="white" fill-opacity="0.4"/>
+                </svg>
+                <svg class="status-icon" width="16" height="12" viewBox="0 0 16 12" fill="none">
+                    <path d="M0 6C0 3.79086 1.79086 2 4 2C6.20914 2 8 3.79086 8 6C8 8.20914 6.20914 10 4 10C1.79086 10 0 8.20914 0 6Z" fill="white" fill-opacity="0.4"/>
+                    <path d="M6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6C10 7.10457 9.10457 8 8 8C6.89543 8 6 7.10457 6 6Z" fill="white" fill-opacity="0.4"/>
+                    <path d="M10 6C10 5.44772 10.4477 5 11 5H15C15.5523 5 16 5.44772 16 6C16 6.55228 15.5523 7 15 7H11C10.4477 7 10 6.55228 10 6Z" fill="white"/>
+                </svg>
+                <svg class="status-icon battery-icon" width="25" height="12" viewBox="0 0 25 12" fill="none">
+                    <rect x="0.5" y="0.5" width="20" height="11" rx="2.5" stroke="white" stroke-opacity="0.4"/>
+                    <path d="M23 4C23 3.44772 23.4477 3 24 3C24.5523 3 25 3.44772 25 4V8C25 8.55228 24.5523 9 24 9C23.4477 9 23 8.55228 23 8V4Z" fill="white" fill-opacity="0.4"/>
+                    <rect x="2" y="2" width="17" height="8" rx="1.5" fill="white"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Wallpaper/Background -->
+        <div class="wallpaper"></div>
+
+        <!-- Time Display -->
+        <div class="time-display">
+            <div class="current-time" id="currentTime">9:41</div>
+            <div class="current-date" id="currentDate">Monday, December 9</div>
+        </div>
+
+        <!-- Notification Area -->
+        <div class="notification-container" id="notificationContainer">
+            <!-- Notifications will appear here -->
+        </div>
+
+        <!-- Lock Screen Actions -->
+        <div class="lock-actions">
+            <div class="lock-action flashlight">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <path d="M9 2v4m6-4v4M7.5 6h9l1 3v11a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V9l1-3z"/>
+                </svg>
+            </div>
+            <div class="lock-action camera">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Swipe Up Indicator -->
+        <div class="swipe-indicator">
+            <div class="home-bar"></div>
+        </div>
+    </div>
+
+    <!-- Director Control Panel (Hidden) -->
+    <div class="director-controls" id="directorControls">
+        <div class="controls-header">
+            <h3>Director Controls</h3>
+            <button class="close-controls" id="closeControls">×</button>
+        </div>
+        <div class="controls-content">
+            <div class="control-group">
+                <label>Notification Delay (seconds)</label>
+                <input type="number" id="notificationDelay" value="3" min="0" max="60" step="0.5">
+            </div>
+            <div class="control-group">
+                <label>Contact Name</label>
+                <select id="contactName">
+                    <option value="simon">Simon (Cordolium)</option>
+                    <option value="matthew">Matthew (Messages)</option>
+                    <option value="custom">Custom...</option>
+                </select>
+            </div>
+            <div class="control-group custom-fields" id="customFields" style="display: none;">
+                <input type="text" id="customContactName" placeholder="Contact Name">
+                <input type="text" id="customAppName" placeholder="App Name">
+                <input type="text" id="customMessage" placeholder="Message">
+            </div>
+            <div class="control-group">
+                <label>Time Override</label>
+                <input type="text" id="timeOverride" placeholder="Leave empty for current time">
+                <small>Example: 3:47 AM</small>
+            </div>
+            <div class="control-buttons">
+                <button class="control-btn primary" id="triggerNotification">Trigger Notification</button>
+                <button class="control-btn" id="clearNotifications">Clear All</button>
+                <button class="control-btn" id="resetScreen">Reset Screen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Access Button (Triple Tap Top-Right) -->
+    <div class="secret-access" id="secretAccess"></div>
+
+    <!-- Scripts -->
+    <script src="js/lock-screen.js"></script>
+</body>
+</html>

@@ -1,0 +1,504 @@
+/**
+ * iPhone Lock Screen
+ * Realistic iOS lock screen with controllable notifications
+ */
+
+/* Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: #000000;
+    position: fixed;
+}
+
+/* Lock Screen Container */
+.lock-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #000000;
+    overflow: hidden;
+}
+
+/* Wallpaper */
+.wallpaper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    z-index: 0;
+}
+
+/* Status Bar */
+.status-bar {
+    position: relative;
+    z-index: 100;
+    padding: env(safe-area-inset-top, 0) 24px 0 24px;
+    padding-top: max(12px, env(safe-area-inset-top));
+    height: 54px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.status-left,
+.status-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-time {
+    font-weight: 600;
+    letter-spacing: -0.3px;
+}
+
+.status-icon {
+    opacity: 1;
+}
+
+.battery-icon {
+    margin-left: 2px;
+}
+
+/* Time Display */
+.time-display {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    margin-top: 80px;
+    padding: 0 24px;
+}
+
+.current-time {
+    font-size: 80px;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -1px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.current-date {
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    margin-top: 8px;
+    letter-spacing: -0.2px;
+}
+
+/* Notification Container */
+.notification-container {
+    position: relative;
+    z-index: 50;
+    margin-top: 40px;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Individual Notification */
+.lock-notification {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: saturate(180%) blur(30px);
+    -webkit-backdrop-filter: saturate(180%) blur(30px);
+    border-radius: 16px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+    animation: notificationSlideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.lock-notification:active {
+    opacity: 0.8;
+}
+
+@keyframes notificationSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.notification-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, #000000, #2a2a2a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.notification-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+    object-fit: cover;
+    filter: brightness(0) invert(1);
+    padding: 4px;
+}
+
+.notification-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.notification-app {
+    font-size: 13px;
+    font-weight: 600;
+    color: #000000;
+    letter-spacing: -0.08px;
+}
+
+.notification-time {
+    font-size: 13px;
+    color: #8e8e93;
+    font-weight: 400;
+}
+
+.notification-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 2px;
+    letter-spacing: -0.2px;
+    line-height: 1.2;
+}
+
+.notification-message {
+    font-size: 14px;
+    color: #000000;
+    line-height: 1.25;
+    letter-spacing: -0.2px;
+    opacity: 0.8;
+}
+
+/* Lock Actions */
+.lock-actions {
+    position: absolute;
+    bottom: 120px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 48px;
+}
+
+.lock-action {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lock-action:active {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(0.95);
+}
+
+/* Swipe Indicator */
+.swipe-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.home-bar {
+    width: 140px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 3px;
+}
+
+/* Director Controls Panel */
+.director-controls {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(20, 20, 20, 0.98);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 24px 24px 0 0;
+    padding: 24px;
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.5);
+    transition: bottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.director-controls.active {
+    bottom: 0;
+}
+
+.controls-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.controls-header h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+}
+
+.close-controls {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.close-controls:active {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(0.95);
+}
+
+.controls-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.control-group small {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: -4px;
+}
+
+.control-group input[type="number"],
+.control-group input[type="text"],
+.control-group select {
+    padding: 12px 16px;
+    font-size: 16px;
+    font-family: inherit;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.control-group select {
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 44px;
+}
+
+.control-group input:focus,
+.control-group select:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.custom-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.control-btn {
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.control-btn.primary {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+.control-btn:active {
+    transform: scale(0.98);
+}
+
+.control-btn.primary:active {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Secret Access Area (Triple Tap Top-Right) */
+.secret-access {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    z-index: 99;
+    cursor: pointer;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 414px) {
+    .current-time {
+        font-size: 72px;
+    }
+
+    .current-date {
+        font-size: 17px;
+    }
+
+    .time-display {
+        margin-top: 60px;
+    }
+
+    .notification-container {
+        margin-top: 32px;
+    }
+}
+
+@media (max-width: 375px) {
+    .current-time {
+        font-size: 68px;
+    }
+
+    .current-date {
+        font-size: 16px;
+    }
+
+    .status-bar {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .lock-actions {
+        padding: 0 36px;
+    }
+}
+
+/* Landscape Mode */
+@media (max-height: 600px) and (orientation: landscape) {
+    .time-display {
+        margin-top: 20px;
+    }
+
+    .current-time {
+        font-size: 48px;
+    }
+
+    .current-date {
+        font-size: 14px;
+        margin-top: 4px;
+    }
+
+    .notification-container {
+        margin-top: 16px;
+    }
+
+    .lock-actions {
+        bottom: 60px;
+    }
+}
+
+/* Dark Mode (Always Active) */
+@media (prefers-color-scheme: light) {
+    .lock-screen {
+        background: #000000;
+    }
+
+    .wallpaper {
+        background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    }
+}

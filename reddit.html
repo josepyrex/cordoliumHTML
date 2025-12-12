@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cordolium - Reddit Search</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/reddit.css">
+</head>
+<body>
+
+    <!-- Reddit Mobile Interface -->
+    <div class="reddit-container">
+
+        <!-- Header -->
+        <div class="reddit-header">
+            <button class="back-btn">‹</button>
+            <div class="search-bar">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"/>
+                </svg>
+                <span class="search-text">Cordolium</span>
+            </div>
+            <button class="menu-btn">⋮</button>
+        </div>
+
+        <!-- Search Results / Thread View -->
+        <div class="reddit-content">
+
+            <!-- Thread Post -->
+            <div class="reddit-post">
+                <div class="post-header">
+                    <div class="subreddit-info">
+                        <div class="subreddit-icon">r/</div>
+                        <div class="subreddit-details">
+                            <span class="subreddit-name">r/Cordolium</span>
+                            <span class="post-meta">u/throwaway847 • 3h ago</span>
+                        </div>
+                    </div>
+                    <button class="post-options">⋯</button>
+                </div>
+
+                <div class="post-content">
+                    <h2 class="post-title">Wasn't expecting it to actually help</h2>
+                    <!-- No description as per director -->
+                </div>
+
+                <div class="post-actions">
+                    <button class="action-btn upvote">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M7.293 1.707L1.707 7.293A1 1 0 002.414 9H5v6a1 1 0 001 1h4a1 1 0 001-1V9h2.586a1 1 0 00.707-1.707l-5.586-5.586a1 1 0 00-1.414 0z"/>
+                        </svg>
+                        <span class="vote-count">247</span>
+                    </button>
+                    <button class="action-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M2 4a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2-1a1 1 0 00-1 1v8a1 1 0 001 1h8a1 1 0 001-1V4a1 1 0 00-1-1H4z"/>
+                            <path d="M6 5.5a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5zM6 8a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3A.5.5 0 016 8zm0 2.5a.5.5 0 01.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5z"/>
+                        </svg>
+                        <span>34</span>
+                    </button>
+                    <button class="action-btn">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 017 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 01-.014.002H7.022zM11 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0zM6.936 9.28a5.88 5.88 0 00-1.23-.247A7.35 7.35 0 005 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 015 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 004 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 116 0 3 3 0 01-6 0zm3-2a2 2 0 100 4 2 2 0 000-4z"/>
+                        </svg>
+                        <span>Share</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section">
+                <div class="comments-header">
+                    <span class="comments-count">34 Comments</span>
+                    <select class="sort-select">
+                        <option>Best</option>
+                        <option>Top</option>
+                        <option>New</option>
+                    </select>
+                </div>
+
+                <!-- Featured Comment (with Gold) -->
+                <div class="comment featured-comment">
+                    <div class="comment-header">
+                        <div class="user-avatar">u</div>
+                        <div class="comment-meta">
+                            <span class="username">u/stargazer_alex</span>
+                            <span class="comment-time">2h ago</span>
+                            <span class="gold-award" title="Gold Award">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="#FFD700">
+                                    <circle cx="8" cy="8" r="7" fill="#FFD700"/>
+                                    <circle cx="8" cy="8" r="5" fill="#FFA500"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="comment-body">
+                        <p>I was feeling a lot yesterday and it wrote me a poem about stars and dreams. It made me feel better and isn't that a good thing?</p>
+                    </div>
+                    <div class="comment-actions">
+                        <button class="comment-vote upvoted">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M7.293 1.707L1.707 7.293A1 1 0 002.414 9H5v6a1 1 0 001 1h4a1 1 0 001-1V9h2.586a1 1 0 00.707-1.707l-5.586-5.586a1 1 0 00-1.414 0z"/>
+                            </svg>
+                            <span class="vote-number">156</span>
+                        </button>
+                        <button class="comment-action-btn">Reply</button>
+                        <button class="comment-action-btn">Share</button>
+                        <button class="comment-action-btn">Award</button>
+                    </div>
+                </div>
+
+                <!-- Additional Comments -->
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="user-avatar">u</div>
+                        <div class="comment-meta">
+                            <span class="username">u/mindful_Journey</span>
+                            <span class="comment-time">1h ago</span>
+                        </div>
+                    </div>
+                    <div class="comment-body">
+                        <p>This is exactly what I needed to hear today. Thank you for sharing this ❤️</p>
+                    </div>
+                    <div class="comment-actions">
+                        <button class="comment-vote">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M7.293 1.707L1.707 7.293A1 1 0 002.414 9H5v6a1 1 0 001 1h4a1 1 0 001-1V9h2.586a1 1 0 00.707-1.707l-5.586-5.586a1 1 0 00-1.414 0z"/>
+                            </svg>
+                            <span class="vote-number">89</span>
+                        </button>
+                        <button class="comment-action-btn">Reply</button>
+                        <button class="comment-action-btn">Share</button>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="user-avatar">u</div>
+                        <div class="comment-meta">
+                            <span class="username">u/techskeptic99</span>
+                            <span class="comment-time">1h ago</span>
+                        </div>
+                    </div>
+                    <div class="comment-body">
+                        <p>I'm still on the fence about AI companions, but stories like this make me curious...</p>
+                    </div>
+                    <div class="comment-actions">
+                        <button class="comment-vote">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M7.293 1.707L1.707 7.293A1 1 0 002.414 9H5v6a1 1 0 001 1h4a1 1 0 001-1V9h2.586a1 1 0 00.707-1.707l-5.586-5.586a1 1 0 00-1.414 0z"/>
+                            </svg>
+                            <span class="vote-number">42</span>
+                        </button>
+                        <button class="comment-action-btn">Reply</button>
+                        <button class="comment-action-btn">Share</button>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="user-avatar">u</div>
+                        <div class="comment-meta">
+                            <span class="username">u/lonely_nights_2024</span>
+                            <span class="comment-time">45m ago</span>
+                        </div>
+                    </div>
+                    <div class="comment-body">
+                        <p>I've been using it for a week now. It's weird how much it helps just having someone to talk to at 3am when you can't sleep.</p>
+                    </div>
+                    <div class="comment-actions">
+                        <button class="comment-vote">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M7.293 1.707L1.707 7.293A1 1 0 002.414 9H5v6a1 1 0 001 1h4a1 1 0 001-1V9h2.586a1 1 0 00.707-1.707l-5.586-5.586a1 1 0 00-1.414 0z"/>
+                            </svg>
+                            <span class="vote-number">67</span>
+                        </button>
+                        <button class="comment-action-btn">Reply</button>
+                        <button class="comment-action-btn">Share</button>
+                    </div>
+                </div>
+
+                <div class="comment">
+                    <div class="comment-header">
+                        <div class="user-avatar">u</div>
+                        <div class="comment-meta">
+                            <span class="username">u/AIethicist2025</span>
+                            <span class="comment-time">30m ago</span>
+                        </div>
+                    </div>
+                    <div class="comment-body">
+                        <p>Genuine question: are we just replacing real human connection with algorithms? Where does this end?</p>
+                    </div>
+                    <div class="comment-actions">
+                        <button class="comment-vote">
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M7.293 1.707L1.707 7.293A1 1 0 002.414 9H5v6a1 1 0 001 1h4a1 1 0 001-1V9h2.586a1 1 0 00.707-1.707l-5.586-5.586a1 1 0 00-1.414 0z"/>
+                            </svg>
+                            <span class="vote-number">28</span>
+                        </button>
+                        <button class="comment-action-btn">Reply</button>
+                        <button class="comment-action-btn">Share</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Hidden Footer Navigation -->
+        <div class="reddit-footer">
+            <a href="index.html" class="footer-link">Home</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

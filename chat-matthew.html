@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Matthew - Chat</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/text-interface.css">
+</head>
+<body class="text-interface-body">
+
+    <!-- Mobile Chat Interface -->
+    <div class="mobile-container">
+        <!-- Chat Header -->
+        <div class="chat-header" id="chatHeader">
+            <button class="back-btn" onclick="history.back()">‹</button>
+            <div class="chat-title">
+                <div class="avatar avatar-matthew">M</div>
+                <div class="title-info">
+                    <div class="name">Matthew</div>
+                    <div class="status">Active now</div>
+                </div>
+            </div>
+            <button class="options-btn">⋮</button>
+        </div>
+
+        <!-- Chat Messages -->
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be added here dynamically -->
+        </div>
+
+        <!-- Typing Indicator (hidden by default) -->
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="avatar-small avatar-matthew">M</div>
+            <div class="typing-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <!-- Chat Input -->
+        <div class="chat-input-container" id="chatInputContainer">
+            <button class="input-icon-btn">+</button>
+            <input
+                type="text"
+                class="chat-input"
+                id="chatInput"
+                placeholder="Message Matthew..."
+                autocomplete="off"
+            >
+            <button class="input-icon-btn send-btn" id="sendBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/chat-matthew.js"></script>
+</body>
+</html>

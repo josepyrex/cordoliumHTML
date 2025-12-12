@@ -234,8 +234,17 @@ class LockScreen {
      * Handle notification click
      */
     handleNotificationClick(data) {
-        // Navigate to text demo (chat interface)
-        window.location.href = 'text-interface.html';
+        // Route to unified chat with correct character parameter
+        if (data.appName === 'Cordolium') {
+            // Simon notification -> Chat with Simon
+            window.location.href = 'chat.html?character=simon';
+        } else if (data.appName === 'Messages') {
+            // Matthew notification -> Chat with Matthew
+            window.location.href = 'chat.html?character=matthew';
+        } else {
+            // Default to Simon
+            window.location.href = 'chat.html?character=simon';
+        }
     }
 
     /**
@@ -392,3 +401,18 @@ if ('wakeLock' in navigator) {
     };
     requestWakeLock();
 }
+
+// Auto-hide Safari address bar (scroll trick)
+window.addEventListener('load', () => {
+    // Scroll slightly to hide address bar
+    setTimeout(() => {
+        window.scrollTo(0, 1);
+    }, 0);
+});
+
+// Re-hide on orientation change
+window.addEventListener('orientationchange', () => {
+    setTimeout(() => {
+        window.scrollTo(0, 1);
+    }, 0);
+});

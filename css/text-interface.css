@@ -86,6 +86,17 @@
     font-size: 12px;
 }
 
+/* Avatar variations */
+.avatar-simon,
+.avatar-simon.avatar-small {
+    background: linear-gradient(135deg, #000000, #2a2a2a);
+}
+
+.avatar-matthew,
+.avatar-matthew.avatar-small {
+    background: linear-gradient(135deg, #1a1a1a, #333);
+}
+
 .title-info {
     display: flex;
     flex-direction: column;
@@ -163,6 +174,7 @@
     font-size: 16px;
     line-height: 1.4;
     word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .message.user .message-bubble {

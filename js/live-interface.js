@@ -305,7 +305,8 @@ class LiveAIInterface {
                 this.hideStateOverlay();
                 break;
             case 'listening':
-                this.showStateOverlay('Listening...');
+                // Hide overlay for listening state
+                this.hideStateOverlay();
                 break;
             case 'processing':
                 this.showStateOverlay('Processing...');
@@ -313,7 +314,8 @@ class LiveAIInterface {
             case 'speaking':
                 // Add speaking class to body (triggers white background)
                 this.body.classList.add('speaking');
-                this.showStateOverlay('Speaking...');
+                // Hide overlay for speaking state
+                this.hideStateOverlay();
                 break;
             case 'error':
                 this.showStateOverlay('Error');
